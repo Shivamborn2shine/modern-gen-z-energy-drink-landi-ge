@@ -6,39 +6,6 @@ import Link from "next/link"
 import { useLenis } from "lenis/react"
 import { Menu, X } from "lucide-react"
 
-const linkVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.4,
-      ease: [0.25, 0.4, 0.25, 1],
-    },
-  }),
-}
-
-const mobileMenuVariants = {
-  hidden: { opacity: 0, height: 0 },
-  visible: {
-    opacity: 1,
-    height: "auto",
-    transition: {
-      duration: 0.3,
-      ease: [0.25, 0.4, 0.25, 1],
-    },
-  },
-  exit: {
-    opacity: 0,
-    height: 0,
-    transition: {
-      duration: 0.2,
-      ease: [0.25, 0.4, 0.25, 1],
-    },
-  },
-}
-
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -62,10 +29,10 @@ export function Navigation() {
 
   const navLinks = [
     { label: "Home", href: "#hero" },
-    { label: "Flavours", href: "#flavours" },
-    { label: "Creators", href: "#creators" },
-    { label: "Distributors", href: "#distributors" },
-    { label: "Careers", href: "#careers" },
+    { label: "Our Story", href: "#assam-story" },
+    { label: "Our Brands", href: "#xowad-brand" },
+    { label: "Tapu", href: "#tapu-reveal" },
+    { label: "Origin", href: "#origin" },
   ]
 
   return (
@@ -74,28 +41,22 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[#121212]/95 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+        scrolled
+          ? "bg-[#1A1A14]/95 backdrop-blur-md border-b border-[#B8963E]/20"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <motion.span
-            className="text-2xl font-black tracking-tighter"
-            whileHover={{ scale: 1.05 }}
+            className="text-2xl font-editorial tracking-wide"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <span className={scrolled ? "text-white" : "text-[#121212]"}>Gi</span>
-            <motion.span
-              className="text-[#AFFF00]"
-              animate={{
-                textShadow: scrolled
-                  ? ["0 0 10px rgba(175,255,0,0.5)", "0 0 20px rgba(175,255,0,0.8)", "0 0 10px rgba(175,255,0,0.5)"]
-                  : "none",
-              }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            >
-              Gi
-            </motion.span>
+            <span className={scrolled ? "text-[#F5F0E8]" : "text-[#2D5016]"}>
+              XOWAD
+            </span>
           </motion.span>
         </Link>
 
@@ -104,8 +65,10 @@ export function Navigation() {
             <motion.button
               key={item.label}
               onClick={() => scrollToSection(item.href)}
-              className={`text-sm font-medium tracking-wide transition-colors relative ${
-                scrolled ? "text-white/80 hover:text-[#AFFF00]" : "text-[#121212]/80 hover:text-[#121212]"
+              className={`text-xs font-medium tracking-[0.15em] uppercase transition-colors relative ${
+                scrolled
+                  ? "text-[#F5F0E8]/70 hover:text-[#B8963E]"
+                  : "text-[#2C2C20]/70 hover:text-[#2D5016]"
               }`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,7 +78,7 @@ export function Navigation() {
             >
               {item.label}
               <motion.span
-                className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#AFFF00] origin-left"
+                className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#B8963E] origin-left"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
@@ -125,28 +88,20 @@ export function Navigation() {
         </div>
 
         <motion.button
-          className="hidden md:block bg-[#AFFF00] text-[#121212] px-6 py-2.5 rounded-full font-bold text-sm tracking-wide relative overflow-hidden"
+          className="hidden md:flex items-center gap-2 bg-[#2D5016] text-[#F5F0E8] px-5 py-2.5 rounded-full font-medium text-xs tracking-[0.1em] uppercase relative overflow-hidden"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <motion.div
-            className="absolute inset-0 bg-white/30"
-            animate={{
-              boxShadow: [
-                "0 0 20px rgba(175,255,0,0.3)",
-                "0 0 40px rgba(175,255,0,0.6)",
-                "0 0 20px rgba(175,255,0,0.3)",
-              ],
-            }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B8963E]/20 to-transparent -translate-x-full"
             animate={{ x: ["-100%", "200%"] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
+            transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatDelay: 4 }}
           />
-          <span className="relative z-10">Get 25% Off</span>
+          <span className="relative z-10">Explore Tapu</span>
+          <svg className="w-3.5 h-3.5 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </motion.button>
 
         <motion.button
@@ -163,7 +118,7 @@ export function Navigation() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className={scrolled ? "text-white" : "text-[#121212]"} />
+                <X className={scrolled ? "text-[#F5F0E8]" : "text-[#2C2C20]"} />
               </motion.div>
             ) : (
               <motion.div
@@ -173,7 +128,7 @@ export function Navigation() {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Menu className={scrolled ? "text-white" : "text-[#121212]"} />
+                <Menu className={scrolled ? "text-[#F5F0E8]" : "text-[#2C2C20]"} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -187,14 +142,15 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-            className="md:hidden bg-[#121212]/95 backdrop-blur-md border-t border-white/10 overflow-hidden"
+            className="md:hidden bg-[#1A1A14]/95 backdrop-blur-md border-t border-[#B8963E]/20 overflow-hidden"
           >
             <div className="px-6 py-4 space-y-4">
               {navLinks.map((item, i) => (
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-white/80 hover:text-[#AFFF00] text-lg font-medium py-2"
+                  className="block w-full text-left text-[#F5F0E8]/80 hover:text-[#B8963E] text-lg py-2"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -203,12 +159,12 @@ export function Navigation() {
                 </motion.button>
               ))}
               <motion.button
-                className="w-full bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide mt-4"
+                className="w-full bg-[#2D5016] text-[#F5F0E8] px-6 py-3 rounded-full font-medium text-sm tracking-wide mt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Get 25% Off
+                Explore Tapu →
               </motion.button>
             </div>
           </motion.div>

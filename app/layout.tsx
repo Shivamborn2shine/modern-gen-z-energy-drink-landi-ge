@@ -1,30 +1,29 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, JetBrains_Mono } from "next/font/google"
+import { Inter, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LenisProvider } from "@/components/lenis-provider"
 import ClickSpark from "@/components/click-spark"
 import "./globals.css"
 
-const _inter = Inter({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
-const _jetbrainsMono = JetBrains_Mono({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-serif",
 })
 
 export const metadata: Metadata = {
-  title: "GiGi Energy Drink | Dream Big, Drink GiGi",
-  description: "Zero sugar, 75mg caffeine, 100% natural flavors. The energy drink for dreamers and doers.",
-  keywords: ["energy drink", "zero sugar", "natural energy", "GiGi", "caffeine"],
-    generator: 'v0.app'
+  title: "XOWAD — The Taste of Origin | TAPU Tea from Assam",
+  description: "XOWAD is a premium house of brands rooted in origin. Discover TAPU — a Signature Assam Blend crafted from the finest Assam CTC teas. Close your eyes. Feel Assam.",
+  keywords: ["XOWAD", "TAPU", "Assam tea", "premium tea", "CTC tea", "Indian tea brand", "origin tea", "Assam blend"],
 }
 
 export const viewport: Viewport = {
-  themeColor: "#AFFF00",
+  themeColor: "#2D5016",
 }
 
 export default function RootLayout({
@@ -34,13 +33,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased`}>
         <ClickSpark
-          sparkColor="#AFFF00"
-          sparkSize={12}
-          sparkRadius={20}
-          sparkCount={8}
-          duration={400}
+          sparkColor="#B8963E"
+          sparkSize={10}
+          sparkRadius={18}
+          sparkCount={6}
+          duration={500}
           easing="ease-out"
         >
           <LenisProvider>{children}</LenisProvider>
